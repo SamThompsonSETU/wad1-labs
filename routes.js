@@ -9,11 +9,18 @@ import dashboard from './controllers/dashboard.js';
 import about from './controllers/about.js';
 import playlist from './controllers/playlist.js';
 
+
 router.get('/', start.createView);
 router.get('/dashboard', dashboard.createView);
 router.get('/about', about.createView);
 router.get('/playlist/:id', playlist.createView);
+router.post('/playlist/:id/addsong', playlist.addSong);
+router.post('/dashboard/addplaylist', dashboard.addPlaylist);
+
 
 router.get('/error', (request, response) => response.status(404).end('Page not found.'));
+router.get('/playlist/:id/deletesong/:songid', playlist.deleteSong);
+router.get('/dashboard/deleteplaylist/:id', dashboard.deletePlaylist);
+
 
 export default router;
