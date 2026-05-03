@@ -1,3 +1,4 @@
+
 'use strict';
 
 import express from 'express';
@@ -18,6 +19,8 @@ router.get('/playlist/:id', playlist.createView);
 router.post('/playlist/:id/addsong', playlist.addSong);
 router.post('/dashboard/addplaylist', dashboard.addPlaylist);
 router.post('/playlist/:id/updatesong/:songid', playlist.updateSong);
+router.get('/searchCategory', dashboard.createView);
+router.get('/sortData', dashboard.createView);
 
 
 

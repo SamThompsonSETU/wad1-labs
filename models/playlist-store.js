@@ -1,3 +1,5 @@
+
+
 'use strict';
 
 import logger from '../utils/logger.js';
@@ -9,19 +11,26 @@ const playlistStore = {
   collection: 'playlistCollection',
   array: 'songs',
 
+  searchPlaylist(search) {
+    return this.store.findBy(
+      this.collection,
+      (playlist) => playlist.title.toLowerCase().includes(search.toLowerCase())
+    );
+  },
+
   getAllPlaylists() {
     return this.store.findAll(this.collection);
   },
   getPlaylist(id) {
     return this.store.findOneBy(this.collection, (playlist => playlist.id === id));
-},
+  },
   addSong(id, song) {
     this.store.addItem(this.collection, id, this.array, song);
-},
+  },
 
-addPlaylist(playlist) {
+  addPlaylist(playlist) {
     this.store.addCollection(this.collection, playlist);
-},
+  },
 
 removeSong(id, songId) {
     this.store.removeItem(this.collection, id, this.array, songId);
